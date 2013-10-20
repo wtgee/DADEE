@@ -9,4 +9,4 @@ class Session():
         self.date = ephem.now()
 
 if __name__=='__main__':
-    print("Nothing to see")
+    print("Nothing to see. Run the dadee.py file")
