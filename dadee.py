@@ -33,7 +33,7 @@ class DADEE():
         self.observer = ephem.Observer()
 
         # Get the settings for our location
-        location_settings = observer_locations[location]
+        location_settings = self.observer_locations[location]
         self.observer.lat = location_settings['lat']
         self.observer.lon = location_settings['lon']
         self.observer.elevation = location_settings['elevation']
@@ -42,7 +42,18 @@ class DADEE():
         self.observer.date = ephem.now()
 
         # Create our Moon and look at it from our observer location
-        self.moon = ephem.Moon(observer)
+        self.moon = ephem.Moon(self.observer)
+
+
+    def get_alt_az(self):
+        """ Prints out the current alt/az """
+
+        while True:
+            print(self.moon.alt, self.moon.az)
+            self.observer.date = ephem.now()
+            self.moon.compute(self.observer)
+            time.sleep(1)
+
 
     def get_good_obs_dates(start_date=ephem.now(),end_date=ephem.Date('2014-01-01')):
         """ 
